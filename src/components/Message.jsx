@@ -1,4 +1,5 @@
 import React from 'react'
+import MarkdownMessage from './MarkdownMessage'
 
 export default function Message({ message, onShowThinking }) {
   const isBot = message.role === 'bot'
@@ -20,7 +21,13 @@ export default function Message({ message, onShowThinking }) {
 
         {/* Message Bubble */}
         <div className="bubble">
-          {message.text || (
+          {message.text ? (
+            isBot ? (
+              <MarkdownMessage content={message.text} />
+            ) : (
+              message.text
+            )
+          ) : (
             <span style={{ color: '#8e8ea0', fontStyle: 'italic' }}>
               Thinking...
             </span>
